@@ -1,17 +1,18 @@
-const express = require('express');
+import express from 'express';
+import cors from 'cors';
+import cookieParser from 'cookie-parser';
 const app = express();
-const port = 3000;
+const port = process.env.PORT || 8080
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-
-app.listen(port, (err) => {
-    if (err) {
-        return console.log('Something bad happened', err);
-    }
-    console.log(`Server is listening on ${port}`);
-});
+app.use(cors({
+    credentials: true
+}))
+app.use(cookieParser())
 
 
 
-module.exports = app;
+
+
+export default app
